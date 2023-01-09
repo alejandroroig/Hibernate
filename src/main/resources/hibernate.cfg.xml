@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection properties - Driver, URL, user, password -->
+        <property name = "hibernate.connection.url">jdbc:h2:file:./bdh2</property>
+        <property name = "hibernate.connection.username">usuario</property>
+        <property name = "hibernate.connection.password">password</property>
+
+        <!-- Dialect is required to let Hibernate know the Database Type, MySQL, Oracle etc -->
+        <property name = "hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+        <!-- Connection Pool Size -->
+        <property name="connection.pool_size">1</property>
+        <!-- ¿Qué hacer con la BBDD? -->
+        <property name="hbm2ddl.auto">create</property>
+        <!-- Outputs the SQL queries, should be disabled in Production -->
+        <property name="show_sql">true</property>
+
+        <!-- List of XML mapping files -->
+        <mapping class = "org.ejemplos.entities.Piloto"/>
+        <mapping class = "org.ejemplos.entities.Equipo"/>
+    </session-factory>
+</hibernate-configuration>
