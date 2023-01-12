@@ -2,10 +2,9 @@ package org.ejemplos;
 
 import org.ejemplos.entities.Equipo;
 import org.ejemplos.entities.Piloto;
-import org.ejemplos.utils.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.ejemplos.repositories.PilotoRepositoryImpl;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class App
 {
@@ -17,63 +16,57 @@ public class App
         Piloto p2 = new Piloto("Lance Stroll", LocalDate.of(1998, 10, 29), e1);
         Piloto p3 = new Piloto("Felipe Drugovich", LocalDate.of(1000, 5, 23), e1);
 
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        PilotoRepositoryImpl pilotos = new PilotoRepositoryImpl();
 
-        // Insertar (save --> persist)
-        // La gestión del id le corresponde a SGBD
-        System.out.println("\nAntes de insertar ------ ");
-        System.out.println(p1);
-        System.out.println(p2);
-        System.out.println(p3);
+        System.out.println("\nInserción y lectura ------ ");
+        pilotos.create(p1);
+        pilotos.create(p2);
+        pilotos.create(p3);
+        pilotos.readAll().forEach(System.out::println);
 
-        Transaction tx = sesion.beginTransaction();
-        sesion.persist(p1);
-        sesion.persist(p2);
-        sesion.persist(p3);
-        tx.commit();
+        System.out.println("\nLeer por id ------ ");
+        Optional<Piloto> p3copia = pilotos.read(p3.getId());
+        if (p3copia.isPresent())
+            System.out.println(p3copia);
+        else
+            System.out.println("El id del piloto no existe");
 
-        // ¿Qué id tienen una vez ha sido insertado?
-        System.out.println("\nTras insertar ------ ");
-        System.out.println(p1);
-        System.out.println(p2);
-        System.out.println(p3);
+        System.out.println("\nLeer por id que no existe------ ");
+        Optional<Piloto> pilotoNoExiste = pilotos.read(4);
+        if (pilotoNoExiste.isPresent())
+            System.out.println(pilotoNoExiste);
+        else
+            System.out.println("El id del piloto no existe");
 
-        // Leer (se pueden utilizar get o find)
-        Piloto p3copia = sesion.get(Piloto.class,p3.getId());
-        System.out.println("\nLeer id 3 ------ ");
-        System.out.println(p3copia);
 
-        // Actualizar (update --> merge)
+        System.out.println("\nTras actualizar, lectura ------ ");
         p3.setFechaNacimiento(LocalDate.of(2000, 5, 23));
-
-        tx = sesion.beginTransaction();
-        sesion.merge(p3);
-        tx.commit();
-
-        System.out.println("\nTras actualizar ------ ");
+        pilotos.update(p3);
         System.out.println(p3);
 
-        // Borrar (delete --> remove)
-        tx = sesion.beginTransaction();
-        sesion.remove(p3copia);
-        tx.commit();
+        // Borrado del piloto p3
+        pilotos.delete(p3);
 
-        // Ver todos (createQuery --> createSelectionQuery
-        System.out.println("\nVer todos ------ ");
-        sesion.createSelectionQuery("from Piloto ").getResultList().forEach(System.out::println);
+        // Ver todos
+        System.out.println("\nBorrado y lectura ------ ");
+        pilotos.readAll().forEach(System.out::println);
 
-        // Ver según parámetro
-        System.out.println("\nVer según parámetro ------ ");
-        sesion.createSelectionQuery("from Piloto where nombre =: nombre")
-                .setParameter("nombre", "Lance Stroll")
-                .getResultList().forEach(System.out::println);
+        // Leer según parámetro
+        System.out.println("\nLeer por nombre ------ ");
+        Optional<Piloto> copiaFernando = pilotos.readByName("Fernando Alonso");
+        if (copiaFernando.isPresent())
+            System.out.println(copiaFernando);
+        else
+            System.out.println("El id del piloto no existe");
 
-        System.out.println("\nVer según parámetro (esto no imprimirá nada) ------ ");
-        sesion.createSelectionQuery("from Piloto where nombre =: nombre")
-                .setParameter("nombre", "Felipe Drugovich")
-                .getResultList().forEach(System.out::println);
+        // Leer según parámetro
+        System.out.println("\nLeer por nombre que no existe------ ");
+        pilotoNoExiste = pilotos.readByName("Paco El-Manco");
+        if (pilotoNoExiste.isPresent())
+            System.out.println(pilotoNoExiste);
+        else
+            System.out.println("El id del piloto no existe");
 
-        sesion.close();
-        HibernateUtil.getSessionFactory().close();
+        pilotos.close();
     }
 }
