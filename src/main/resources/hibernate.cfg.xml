@@ -21,5 +21,7 @@
         <!-- List of XML mapping files -->
         <mapping class = "org.ejemplos.entities.Piloto"/>
         <mapping class = "org.ejemplos.entities.Equipo"/>
+        <mapping class = "org.ejemplos.entities.PilotoDetalles"/>
+        <mapping class = "org.ejemplos.entities.Deporte"/>
     </session-factory>
 </hibernate-configuration>

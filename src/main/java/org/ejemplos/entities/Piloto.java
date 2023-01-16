@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "pilotos")
@@ -18,19 +20,23 @@ public class Piloto implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Equipo equipo;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private PilotoDetalles detalles;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Deporte> deportes;
+
     public Piloto() {
 
     }
 
-    public Piloto(String nombre, LocalDate fechaNacimiento) {
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Piloto(String nombre, LocalDate fechaNacimiento, Equipo equipo) {
+    public Piloto(String nombre, LocalDate fechaNacimiento, Equipo equipo, PilotoDetalles detalles, List<Deporte> deportes) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.equipo = equipo;
+        this.detalles = detalles;
+        this.deportes = deportes;
     }
 
     public int getId() {
@@ -65,6 +71,22 @@ public class Piloto implements Serializable {
         this.equipo = equipo;
     }
 
+    public PilotoDetalles getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(PilotoDetalles detalles) {
+        this.detalles = detalles;
+    }
+
+    public List<Deporte> getDeportes() {
+        return deportes;
+    }
+
+    public void setDeportes(List<Deporte> deportes) {
+        this.deportes = deportes;
+    }
+
     @Override
     public String toString() {
         return "Piloto{" +
@@ -72,6 +94,8 @@ public class Piloto implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", equipo=" + equipo +
+                ", detalles=" + detalles +
+                ", deportes=" + deportes +
                 '}';
     }
 }

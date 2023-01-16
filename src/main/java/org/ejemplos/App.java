@@ -1,20 +1,27 @@
 package org.ejemplos;
 
+import org.ejemplos.entities.Deporte;
 import org.ejemplos.entities.Equipo;
 import org.ejemplos.entities.Piloto;
+import org.ejemplos.entities.PilotoDetalles;
 import org.ejemplos.repositories.PilotoRepositoryImpl;
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.*;
 
 public class App
 {
     public static void main( String[] args )
     {
         Equipo e1 = new Equipo("Aston Martin", "Mercedes");
+        List<Deporte> d1 = new ArrayList<>();
+        d1.add(new Deporte("Futbol")); d1.add(new Deporte("Baloncesto"));
 
-        Piloto p1 = new Piloto("Fernando Alonso", LocalDate.of(1981, 7, 29), e1);
-        Piloto p2 = new Piloto("Lance Stroll", LocalDate.of(1998, 10, 29), e1);
-        Piloto p3 = new Piloto("Felipe Drugovich", LocalDate.of(1000, 5, 23), e1);
+        Piloto p1 = new Piloto("Fernando Alonso", LocalDate.of(1981, 7, 29), e1,
+                new PilotoDetalles(14, "España"), d1);
+        Piloto p2 = new Piloto("Lance Stroll", LocalDate.of(1998, 10, 29), e1,
+                new PilotoDetalles(18, "Estados Unidos"), null);
+        Piloto p3 = new Piloto("Felipe Drugovich", LocalDate.of(1000, 5, 23), e1,
+                new PilotoDetalles(82, "Brasil"), null);
 
         PilotoRepositoryImpl pilotos = new PilotoRepositoryImpl();
 

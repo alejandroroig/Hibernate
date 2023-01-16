@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0efa5cbf-5718-47bc-baea-0d2d8387428c" name="Changes" comment="Ejemplo Hibernate">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/repositories/PilotoRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/repositories/Repository.java" afterDir="false" />
+    <list default="true" id="0efa5cbf-5718-47bc-baea-0d2d8387428c" name="Changes" comment="Añadidos repositories">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/entities/Deporte.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/entities/PilotoDetalles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdh2.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdh2.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bdh2.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdh2.trace.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ejemplos/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ejemplos/entities/Piloto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ejemplos/entities/Piloto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +104,9 @@
       <workItem from="1673055224131" duration="14540000" />
       <workItem from="1673118640668" duration="26571000" />
       <workItem from="1673267425067" duration="423000" />
-      <workItem from="1673507728044" duration="6571000" />
+      <workItem from="1673507728044" duration="6676000" />
+      <workItem from="1673519874791" duration="1248000" />
+      <workItem from="1673861767294" duration="4634000" />
     </task>
     <task id="LOCAL-00001" summary="Ejemplo Hibernate">
       <created>1673258161732</created>
@@ -111,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673258161732</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Añadidos repositories">
+      <created>1673519363394</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673519363394</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +131,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Ejemplo Hibernate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ejemplo Hibernate" />
+    <MESSAGE value="Añadidos repositories" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadidos repositories" />
   </component>
 </project>
